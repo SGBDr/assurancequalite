@@ -1,6 +1,5 @@
-public class DoctorService extends Service {
-
-    public DoctorService(Main.TriageType triageType){
+public class RadioService extends Service {
+    public RadioService(Main.TriageType triageType){
         super(triageType);
     }
 

@@ -10,7 +10,8 @@ public class Main {
     }
 
     public enum TriageType {
-        FIFO
+        FIFO,
+        GRAVITY
     }
 
     public enum VisibleSymptom {

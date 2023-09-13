@@ -1,2 +1,5 @@
-package PACKAGE_NAME;public class NoPatientException {
+public class NoPatientException extends Exception {
+    public NoPatientException(String message){
+        super(message);
+    }
 }
