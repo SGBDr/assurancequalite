@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 abstract class Service {
      protected ArrayList<String> patients = new ArrayList<>();
@@ -17,6 +18,7 @@ abstract class Service {
                 this.gravity(name, gravity, visibleSymptom);
                  break;
          }
+         //System.out.println(Arrays.toString(this.patients.toArray()));
      }
 
      public void fifo(String name, Main.VisibleSymptom visibleSymptom){
