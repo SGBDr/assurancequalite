@@ -18,14 +18,22 @@ abstract class Service {
                 this.gravity(name, gravity, visibleSymptom);
                  break;
          }
-         //System.out.println(Arrays.toString(this.patients.toArray()));
+     }
+
+     public void triagePatient(String name, int gravity){
+         triagePatient(name, gravity, null);
      }
 
      public void fifo(String name, Main.VisibleSymptom visibleSymptom){
          this.patients.add(name);
      }
 
-     public abstract void gravity(String name, int gravity, Main.VisibleSymptom visibleSymptom);
+     public void gravity(String name, int gravity, Main.VisibleSymptom visibleSymptom){
+         if(gravity > 5)
+             this.patients.add(0, name);
+         else
+             this.patients.add(name);
+     }
 
      public String getPatient() throws NoPatientException {
         if(this.patients.isEmpty())

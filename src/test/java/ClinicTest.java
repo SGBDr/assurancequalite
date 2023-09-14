@@ -19,7 +19,7 @@ public class ClinicTest {
     }
 
     @Test
-    public void WithOnePreviousPatient_IfGravityGreaterThanFiveWithSprain_ReturnGreaterGravity()
+    public void WithOnePreviousPatient_IfGravityGreaterThanFiveWithSprain_ReturnGreaterGravityAndFifo()
             throws NoPatientException {
         var clinic = new Clinic(Main.TriageType.GRAVITY, Main.TriageType.FIFO);
 
@@ -29,6 +29,19 @@ public class ClinicTest {
         assertEquals("Rodrigue", clinic.getPatientFromDoctor());
         assertEquals("Anatole", clinic.getPatientFromRadio());
         assertEquals("Rodrigue", clinic.getPatientFromRadio());
+    }
+
+    @Test
+    public void WithOnePreviousPatient_IfGravityGreaterThanFiveWithSprain_ReturnGreaterGravityGravity()
+            throws NoPatientException {
+        var clinic = new Clinic(Main.TriageType.GRAVITY, Main.TriageType.GRAVITY);
+
+        clinic.triagePatient("Anatole", 2, Main.VisibleSymptom.SPRAIN);
+        clinic.triagePatient("Rodrigue", 6, Main.VisibleSymptom.SPRAIN);
+
+        assertEquals("Rodrigue", clinic.getPatientFromDoctor());
+        assertEquals("Rodrigue", clinic.getPatientFromRadio());
+        assertEquals("Anatole", clinic.getPatientFromRadio());
     }
 
     @Test
@@ -66,8 +79,8 @@ public class ClinicTest {
     public void FIFODoctor() throws Exception {
         var clinic = new Clinic(Main.TriageType.FIFO, Main.TriageType.FIFO);
 
-        clinic.triagePatient("First", 4, Main.VisibleSymptom.MIGRAINE);
-        clinic.triagePatient("Second", 4, Main.VisibleSymptom.MIGRAINE);
+        clinic.triagePatient("First", 5, Main.VisibleSymptom.MIGRAINE);
+        clinic.triagePatient("Second", 7, Main.VisibleSymptom.MIGRAINE);
         clinic.triagePatient("Third", 4, Main.VisibleSymptom.MIGRAINE);
 
         Assert.assertEquals("First", clinic.getPatientFromDoctor());
