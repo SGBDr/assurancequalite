@@ -19,6 +19,48 @@ public class ClinicTest {
     }
 
     @Test
+    public void WithEmptyList_IfCovidSymptom_ListEmpty_Gravity(){
+        var clinic = new Clinic(Main.TriageType.GRAVITY, Main.TriageType.GRAVITY);
+
+        clinic.triagePatient("Anatole", 10, Main.VisibleSymptom.CORONAVIRUS);
+
+        try{
+            clinic.getPatientFromDoctor();
+        }catch(NoPatientException e){
+            assertThat(e.getMessage(), is("No patient"));
+            return;
+        }
+        try{
+            clinic.getPatientFromRadio();
+        }catch(NoPatientException e){
+            assertThat(e.getMessage(), is("No patient"));
+            return;
+        }
+        Assert.fail("No Exception thrown");
+    }
+
+    @Test
+    public void WithEmptyList_IfCovidSymptom_ListEmpty_Fifo(){
+        var clinic = new Clinic(Main.TriageType.FIFO, Main.TriageType.FIFO);
+
+        clinic.triagePatient("Anatole", 10, Main.VisibleSymptom.CORONAVIRUS);
+
+        try{
+            clinic.getPatientFromDoctor();
+        }catch(NoPatientException e){
+            assertThat(e.getMessage(), is("No patient"));
+            return;
+        }
+        try{
+            clinic.getPatientFromRadio();
+        }catch(NoPatientException e){
+            assertThat(e.getMessage(), is("No patient"));
+            return;
+        }
+        Assert.fail("No Exception thrown");
+    }
+
+    @Test
     public void WithOnePreviousPatient_IfGravityGreaterThanFiveWithSprain_ReturnGreaterGravityAndFifo()
             throws NoPatientException {
         var clinic = new Clinic(Main.TriageType.GRAVITY, Main.TriageType.FIFO);

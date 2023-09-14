@@ -10,14 +10,15 @@ abstract class Service {
      }
 
      public void triagePatient(String name, int gravity, Main.VisibleSymptom visibleSymptom){
-         switch (this.triageType){
-             case FIFO:
-                this.fifo(name, visibleSymptom);
-                break;
-             case GRAVITY:
-                this.gravity(name, gravity, visibleSymptom);
-                 break;
-         }
+         if(visibleSymptom != Main.VisibleSymptom.CORONAVIRUS)
+             switch (this.triageType){
+                 case FIFO:
+                    this.fifo(name, visibleSymptom);
+                    break;
+                 case GRAVITY:
+                    this.gravity(name, gravity, visibleSymptom);
+                     break;
+             }
      }
 
      public void triagePatient(String name, int gravity){

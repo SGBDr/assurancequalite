@@ -19,6 +19,36 @@ public class CommunityCenterTest {
     }
 
     @Test
+    public void WithEmptyList_IfCovidSymptom_ListEmpty_Gravity(){
+        var community = new CommunityCenter(Main.TriageType.GRAVITY);
+
+        community.triagePatient("Anatole", 10, Main.VisibleSymptom.CORONAVIRUS);
+
+        try{
+            community.getPatientFromNurse();
+        }catch(NoPatientException e){
+            assertThat(e.getMessage(), is("No patient"));
+            return;
+        }
+        Assert.fail("No Exception thrown");
+    }
+
+    @Test
+    public void WithEmptyList_IfCovidSymptom_ListEmpty_Fifo(){
+        var community = new CommunityCenter(Main.TriageType.FIFO);
+
+        community.triagePatient("Anatole", 10, Main.VisibleSymptom.CORONAVIRUS);
+
+        try{
+            community.getPatientFromNurse();
+        }catch(NoPatientException e){
+            assertThat(e.getMessage(), is("No patient"));
+            return;
+        }
+        Assert.fail("No Exception thrown");
+    }
+
+    @Test
     public void IfNoPatientReturn() {
         var community = new CommunityCenter(Main.TriageType.GRAVITY);
 

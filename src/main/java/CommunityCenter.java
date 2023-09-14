@@ -5,6 +5,10 @@ public class CommunityCenter {
         this.nurseService = new NurseService(triageNurseType);
     }
 
+    public void triagePatient(String name, int gravity, Main.VisibleSymptom symptom) {
+        this.nurseService.triagePatient(name, gravity, symptom);
+    }
+
     public void triagePatient(String name, int gravity) {
         this.nurseService.triagePatient(name, gravity);
     }
